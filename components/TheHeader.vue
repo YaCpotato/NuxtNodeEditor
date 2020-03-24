@@ -12,7 +12,7 @@ export default {
 
 <style>
 .TheHeader {
-  background-color: #67c23a;
+  background-color: #409eff;
   min-height: 10vh;
   width: 100vw;
 }
