@@ -1,13 +1,20 @@
 <template>
-  <div class="container">
+  <div class="MainCanvas">
     これはメインキャンバスです
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: 'MainCanvas'
+}
+</script>
 
 <style>
-.container {
+.MainCanvas {
+  display: inline-block;
   background-color: rgb(0, 57, 163);
+  height: 80vh;
+  width: 75vw;
 }
 </style>

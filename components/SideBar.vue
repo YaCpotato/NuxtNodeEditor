@@ -1,13 +1,19 @@
 <template>
-  <div class="container">
+  <div class="SideBar">
     これはサイドバーです
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: 'SideBar'
+}
+</script>
 
 <style>
-.container {
+.SideBar {
   background-color: cornsilk;
+  height: 80vh;
+  width: 15vw;
 }
 </style>
