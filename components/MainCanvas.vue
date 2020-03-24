@@ -1,6 +1,6 @@
 <template>
   <div class="MainCanvas">
-    <p>{{ mouseX }}, {{ mouseY }}</p>
+    <!--p>{{ mouseX }}, {{ mouseY }}</p-->
     <svg
       class="draw-area"
       width="80vw"
@@ -13,6 +13,9 @@
 </template>
 
 <script>
+import * as d3 from 'd3'
+import $ from 'jquery'
+
 export default {
   name: 'MainCanvas',
   data() {
@@ -25,8 +28,8 @@ export default {
   methods: {
     mouseMove(e) {
       if (e) {
-        this.mouseX = e.pageX
-        this.mouseY = e.pageY
+        this.mouseX = e.pageX - $('.SideBar').width()
+        this.mouseY = e.pageY - $('.TheHeader').height()
       } else {
         this.mouseX = event.pageX + document.body.scrollLeft
         this.mouseY = event.pageY + document.body.scrollTop
@@ -35,8 +38,8 @@ export default {
     drawSomething() {
       d3.select('.draw-area')
         .append('text')
-        .attr('x', 20)
-        .attr('y', 20)
+        .attr('x', this.mouseX)
+        .attr('y', this.mouseY)
         .text('Hello!')
     }
   }

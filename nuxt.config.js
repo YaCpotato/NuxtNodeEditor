@@ -27,7 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/element-ui', '@/plugins/d3.min'],
+  plugins: ['@/plugins/element-ui'],
   /*
    ** Nuxt.js dev-modules
    */
