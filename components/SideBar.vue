@@ -13,7 +13,6 @@ export default {
 <style>
 .SideBar {
   background-color: cornsilk;
-  height: 80vh;
-  width: 15vw;
+  min-height: 80vh;
 }
 </style>

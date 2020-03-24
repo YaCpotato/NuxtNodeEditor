@@ -13,7 +13,7 @@ export default {
 <style>
 .TheHeader {
   background-color: cornflowerblue;
-  height: 10vh;
+  min-height: 10vh;
   width: 100vw;
 }
 </style>

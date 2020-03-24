@@ -2,8 +2,12 @@
   <div class="container">
     <div style="border: 1px solid #eee">
       <TheHeader />
-      <SideBar />
-      <MainCanvas />
+      <el-row>
+        <el-col :span="4">
+          <SideBar />
+        </el-col>
+        <el-col :span="20"><MainCanvas /> </el-col>
+      </el-row>
     </div>
   </div>
 </template>
