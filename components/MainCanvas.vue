@@ -28,6 +28,11 @@ export default {
       classNameString: 'abcdefghijkmlnopqrstuvwxyz'
     }
   },
+  computed: {
+    currentDrawMode() {
+      return this.$store.getters['drawMode/selectedDrawMode']
+    }
+  },
   methods: {
     mouseMove(e) {
       if (e) {
@@ -45,24 +50,33 @@ export default {
           Math.floor(Math.random() * this.classNameString.length)
         ]
       }
-      d3.select('.draw-area')
-        .append('rect')
-        .attr('class', hash)
-        .attr('x', this.mouseX)
-        .attr('y', this.mouseY)
-        .attr('width', 100)
-        .attr('height', 80)
-      d3.drag('.' + hash)
-        .on('start', this.dragstarted)
-        .on('drag', this.dragged)
-        .on('end', this.dragended)
-      const dragHandler = d3.drag().on('drag', function() {
-        d3.select(this)
-          .attr('x', d3.event.x)
-          .attr('y', d3.event.y)
-      })
-
-      dragHandler(d3.select('.' + hash))
+      if (this.currentDrawMode === 'line') {
+        alert('not supported')
+      } else if (this.currentDrawMode === 'rect') {
+        d3.select('.draw-area')
+          .append('rect')
+          .attr('class', hash)
+          .attr('x', this.mouseX)
+          .attr('y', this.mouseY)
+          .attr('width', 100)
+          .attr('height', 80)
+        d3.drag('.' + hash)
+          .on('start', this.dragstarted)
+          .on('drag', this.dragged)
+          .on('end', this.dragended)
+        const dragHandler = d3.drag().on('drag', function() {
+          d3.select(this)
+            .attr('x', d3.event.x)
+            .attr('y', d3.event.y)
+        })
+        dragHandler(d3.select('.' + hash))
+      } else if (this.currentDrawMode === 'circle') {
+        alert('not supported')
+      } else if (this.currentDrawMode === 'text') {
+        alert('not supported')
+      } else if (this.currentDrawMode === 'node') {
+        alert('not supported')
+      }
     }
   }
 }
