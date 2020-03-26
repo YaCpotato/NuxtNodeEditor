@@ -71,7 +71,27 @@ export default {
         ]
       }
       if (this.currentDrawMode === 'line') {
-        alert('not supported')
+        d3.select('.draw-area')
+          .append('line')
+          .attr('class', hash)
+          .attr('x1', this.mouseX)
+          .attr('y1', this.mouseY)
+          .attr('x2', this.mouseX + 100)
+          .attr('y2', this.mouseY + 150)
+          .attr('stroke', 'black')
+          .attr('stroke-width', 2)
+        d3.drag('.' + hash)
+          .on('start', this.dragstarted)
+          .on('drag', this.dragged)
+          .on('end', this.dragended)
+        const dragHandler = d3.drag().on('drag', function() {
+          d3.select(this)
+            .attr('x1', d3.event.x) // x1座標を指定
+            .attr('y1', d3.event.y) // y1座標を指定
+            .attr('x2', d3.event.x + 100) // x2座標を指定
+            .attr('y2', d3.event.y + 150) // y2座標を指定
+        })
+        dragHandler(d3.select('.' + hash))
       } else if (this.currentDrawMode === 'rect') {
         d3.select('.draw-area')
           .append('rect')
