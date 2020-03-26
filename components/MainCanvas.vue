@@ -91,7 +91,24 @@ export default {
         })
         dragHandler(d3.select('.' + hash))
       } else if (this.currentDrawMode === 'circle') {
-        alert('not supported')
+        d3.select('.draw-area')
+          .append('circle')
+          .attr('class', hash)
+          .attr('cx', 50)
+          .attr('cy', 50)
+          .attr('r', 20)
+          .attr('stroke-width', 3)
+          .attr('stroke', 'black')
+        d3.drag('.' + hash)
+          .on('start', this.dragstarted)
+          .on('drag', this.dragged)
+          .on('end', this.dragended)
+        const dragHandler = d3.drag().on('drag', function() {
+          d3.select(this)
+            .attr('cx', d3.event.x)
+            .attr('cy', d3.event.y)
+        })
+        dragHandler(d3.select('.' + hash))
       } else if (this.currentDrawMode === 'text') {
         this.dialogVisible = true
       } else if (this.currentDrawMode === 'node') {
