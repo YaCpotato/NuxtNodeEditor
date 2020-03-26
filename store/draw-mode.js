@@ -10,19 +10,10 @@ export const getters = {
 }
 
 export const mutations = {
-  SET_DRAW_MODE(state, { drawModeString }) {
+  setDrawMode(state, drawModeString) {
     state.selectedDrawMode = drawModeString
   },
-  REVERSE_DRAW_ACTION_LOCK(state) {
+  ReverseDrawActionClick(state) {
     state.drawActionLock = !state.drawActionLock
-  }
-}
-
-export const actions = {
-  fetchDrawMode({ commit, drawMode }) {
-    commit('SET_DRAW_MODE', { drawMode })
-  },
-  fetchDrawActionClick({ commit }) {
-    commit('REVERSE_DRAW_ACTION_LOCK')
   }
 }

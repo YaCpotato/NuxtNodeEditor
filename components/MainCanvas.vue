@@ -1,6 +1,7 @@
 <template>
   <div class="MainCanvas">
     <!--p>{{ mouseX }}, {{ mouseY }}</p-->
+    <p>{{ currentDrawMode }}</p>
     <svg
       class="draw-area"
       width="80vw"
@@ -20,7 +21,6 @@ export default {
   name: 'MainCanvas',
   data() {
     return {
-      type: 'rect',
       mouseX: null,
       mouseY: null,
       mouseDowned: false,
@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     currentDrawMode() {
-      return this.$store.getters['drawMode/selectedDrawMode']
+      return this.$store.getters['draw-mode/selectedDrawMode']
     }
   },
   methods: {
@@ -50,6 +50,7 @@ export default {
           Math.floor(Math.random() * this.classNameString.length)
         ]
       }
+      console.log(this.currentDrawMode)
       if (this.currentDrawMode === 'line') {
         alert('not supported')
       } else if (this.currentDrawMode === 'rect') {

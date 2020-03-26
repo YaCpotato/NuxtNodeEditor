@@ -35,7 +35,7 @@ export default {
   methods: {
     async setDrawMode(modeString) {
       try {
-        await this.$store.dispatch('drawMode/fetchDrawMode', modeString)
+        await this.$store.commit('draw-mode/setDrawMode', modeString)
       } catch (err) {
         alert(err)
       }
