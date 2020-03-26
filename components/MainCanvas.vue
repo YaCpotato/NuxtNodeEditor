@@ -1,15 +1,33 @@
 <template>
-  <div class="MainCanvas">
-    <!--p>{{ mouseX }}, {{ mouseY }}</p-->
-    <p>{{ currentDrawMode }}</p>
-    <svg
-      class="draw-area"
-      width="80vw"
-      height="80vh"
-      xmlns="http://www.w3.org/2000/svg"
-      @click="drawSomething"
-      @mousemove="mouseMove($event)"
-    ></svg>
+  <div>
+    <div class="MainCanvas">
+      <!--p>{{ mouseX }}, {{ mouseY }}</p-->
+      <p>{{ currentDrawMode }}</p>
+      <svg
+        class="draw-area"
+        width="80vw"
+        height="80vh"
+        xmlns="http://www.w3.org/2000/svg"
+        @click="drawSomething"
+        @mousemove="mouseMove($event)"
+      ></svg>
+    </div>
+    <div>
+      <el-dialog title="text-input" :visible.sync="dialogVisible" width="30%">
+        <el-input v-model="text"></el-input>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialogVisible = false">Cancel</el-button>
+          <el-button
+            type="primary"
+            @click="
+              inputText('text')
+              dialogVisible = false
+            "
+            >Confirm</el-button
+          >
+        </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -25,7 +43,9 @@ export default {
       mouseY: null,
       mouseDowned: false,
       classNameLength: 8,
-      classNameString: 'abcdefghijkmlnopqrstuvwxyz'
+      classNameString: 'abcdefghijkmlnopqrstuvwxyz',
+      dialogVisible: false,
+      text: ''
     }
   },
   computed: {
@@ -50,7 +70,6 @@ export default {
           Math.floor(Math.random() * this.classNameString.length)
         ]
       }
-      console.log(this.currentDrawMode)
       if (this.currentDrawMode === 'line') {
         alert('not supported')
       } else if (this.currentDrawMode === 'rect') {
@@ -74,10 +93,34 @@ export default {
       } else if (this.currentDrawMode === 'circle') {
         alert('not supported')
       } else if (this.currentDrawMode === 'text') {
-        alert('not supported')
+        this.dialogVisible = true
       } else if (this.currentDrawMode === 'node') {
         alert('not supported')
       }
+    },
+    inputText() {
+      let hash = ''
+      for (let i = 0; i < this.classNameLength; i++) {
+        hash += this.classNameString[
+          Math.floor(Math.random() * this.classNameString.length)
+        ]
+      }
+      d3.select('.draw-area')
+        .append('text')
+        .attr('class', hash)
+        .attr('x', this.mouseX)
+        .attr('y', this.mouseY)
+        .text(this.text)
+      d3.drag('.' + hash)
+        .on('start', this.dragstarted)
+        .on('drag', this.dragged)
+        .on('end', this.dragended)
+      const dragHandler = d3.drag().on('drag', function() {
+        d3.select(this)
+          .attr('x', d3.event.x)
+          .attr('y', d3.event.y)
+      })
+      dragHandler(d3.select('.' + hash))
     }
   }
 }
