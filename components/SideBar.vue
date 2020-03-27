@@ -53,16 +53,16 @@ export default {
       } catch (err) {
         alert(err)
       }
-    }
-  },
-  async setModeSwitch() {
-    try {
-      await this.$store.commit(
-        'draw-mode/ReverseDrawActionClick',
-        this.modeSwitch
-      )
-    } catch (err) {
-      alert(err)
+    },
+    async setModeSwitch() {
+      try {
+        await this.$store.commit(
+          'draw-mode/ReverseDrawActionClick',
+          this.modeSwitch
+        )
+      } catch (err) {
+        alert(err)
+      }
     }
   }
 }

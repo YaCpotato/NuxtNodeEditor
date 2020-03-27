@@ -6,7 +6,8 @@ export const state = () => ({
 
 export const getters = {
   drawMode: (state) => state.drawMode,
-  selectedDrawMode: (state) => state.selectedDrawMode
+  selectedDrawMode: (state) => state.selectedDrawMode,
+  drawActionLock: (state) => state.drawActionLock
 }
 
 export const mutations = {

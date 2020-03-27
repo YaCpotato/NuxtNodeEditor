@@ -51,6 +51,9 @@ export default {
   computed: {
     currentDrawMode() {
       return this.$store.getters['draw-mode/selectedDrawMode']
+    },
+    currentLock() {
+      return this.$store.getters['draw-mode/drawActionLock']
     }
   },
   methods: {
@@ -64,6 +67,9 @@ export default {
       }
     },
     drawSomething() {
+      if (this.currentLock) {
+        return
+      }
       let hash = ''
       for (let i = 0; i < this.classNameLength; i++) {
         hash += this.classNameString[
