@@ -3,7 +3,7 @@
     <el-row class="select-menu">
       <el-col :span="24">
         <el-menu default-active="2" class="el-menu-vertical-demo">
-          <el-menu-item>
+          <div class="mode-switch">
             <el-switch
               v-model="modeSwitch"
               active-text="Drag Mode"
@@ -11,7 +11,7 @@
               @change="setModeSwitch"
             >
             </el-switch>
-          </el-menu-item>
+          </div>
           <el-menu-item @click="setDrawMode('line')">
             <i class="fas fa-slash"></i>
             <span>Line</span>
@@ -76,5 +76,25 @@ export default {
 }
 .select-menu {
   width: 100%;
+}
+.mode-switch {
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.el-switch__core {
+  width: 60px;
+  height: 30px;
+}
+.el-switch__core::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: 40%;
+  transition: all 0.3s;
+  width: 16px;
+  height: 26px;
+  background-color: #fff;
 }
 </style>
