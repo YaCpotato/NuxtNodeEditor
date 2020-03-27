@@ -3,6 +3,15 @@
     <el-row class="select-menu">
       <el-col :span="24">
         <el-menu default-active="2" class="el-menu-vertical-demo">
+          <el-menu-item>
+            <el-switch
+              v-model="modeSwitch"
+              active-text="Drag Mode"
+              inactive-text="Position Lock"
+              @change="setModeSwitch"
+            >
+            </el-switch>
+          </el-menu-item>
           <el-menu-item @click="setDrawMode('line')">
             <i class="fas fa-slash"></i>
             <span>Line</span>
@@ -32,6 +41,11 @@
 <script>
 export default {
   name: 'SideBar',
+  data() {
+    return {
+      modeSwitch: true
+    }
+  },
   methods: {
     async setDrawMode(modeString) {
       try {
@@ -39,6 +53,16 @@ export default {
       } catch (err) {
         alert(err)
       }
+    }
+  },
+  async setModeSwitch() {
+    try {
+      await this.$store.commit(
+        'draw-mode/ReverseDrawActionClick',
+        this.modeSwitch
+      )
+    } catch (err) {
+      alert(err)
     }
   }
 }
@@ -48,7 +72,7 @@ export default {
 .SideBar {
   background-color: #ebeef5;
   min-height: 80vh;
-  width: 15vw;
+  width: 20vw;
 }
 .select-menu {
   width: 100%;

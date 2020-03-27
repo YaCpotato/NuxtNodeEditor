@@ -1,7 +1,5 @@
 <template>
-  <div class="TheHeader">
-    これはヘッダーです
-  </div>
+  <div class="TheHeader"></div>
 </template>
 
 <script>
